@@ -17,6 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+
 const chartData = [
   { month: "Janeiro", subscribers: 155 },
   { month: "Fevereiro", subscribers: 108 },
@@ -33,48 +34,55 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-const lastMonth = chartData.at(-2);
-const currentMonth = chartData.at(-1);
+const lastMonth = chartData.at(-2)
+const currentMonth = chartData.at(-1)
 
-const lastSubs = lastMonth?.subscribers ?? 0;
-const currentSubs = currentMonth?.subscribers ?? 0;
+const lastSubs = lastMonth?.subscribers ?? 0
+const currentSubs = currentMonth?.subscribers ?? 0
 
-const percentage = ((currentSubs - lastSubs) / lastSubs) * 100;
+const percentage = ((currentSubs - lastSubs) / lastSubs) * 100
 
 export function AboutChart() {
   return (
-    <Card data-aos="zoom-in" className="max-w-[480px]">
-      <CardHeader>
-        <CardTitle>Novos assinantes por mês</CardTitle>
-        <CardDescription>Janeiro a Junho 2024</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Bar dataKey="subscribers" fill="var(--primary-color)" radius={8} />
-          </BarChart>
-        </ChartContainer>
-      </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Aumento de {percentage.toFixed(2)}% este mês <IoMdTrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Mostrando o total de assinantes nos últimos 6 meses
-        </div>
-      </CardFooter>
-    </Card>
+    <div data-aos="zoom-in" className="w-full max-w-[480px]">
+      <Card className="w-full bg-zinc-900/80 backdrop-blur border border-zinc-800">
+        <CardHeader>
+          <CardTitle className="text-lg">
+            Novos assinantes por mês
+          </CardTitle>
+          <CardDescription>
+            Janeiro a Junho 2024
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ChartContainer config={chartConfig}>
+            <BarChart accessibilityLayer data={chartData}>
+              <CartesianGrid vertical={false} strokeOpacity={0.2} />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar dataKey="subscribers" fill="var(--primary-color)" radius={10} />
+            </BarChart>
+          </ChartContainer>
+        </CardContent>
+        <CardFooter className="flex-col items-start gap-2 text-sm">
+          <div className="flex items-center gap-2 font-medium">
+            Aumento de {percentage.toFixed(2)}% este mês
+            <IoMdTrendingUp className="h-4 w-4 text-[var(--primary-color)]" />
+          </div>
+          <div className="text-zinc-400">
+            Total de assinantes nos últimos 6 meses
+          </div>
+        </CardFooter>
+      </Card>
+    </div>
   )
 }

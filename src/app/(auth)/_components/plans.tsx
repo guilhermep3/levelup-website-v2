@@ -1,86 +1,81 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { PlansData } from "@/data/plans"
+import { PlansData } from "@/data/plans";
 import { useFormStore } from "@/store/formStore";
 import { PlansType } from "@/types/plans";
-import { buttonStyle, sectionStyle, sectionSubtitleStyle, sectionTitleSpanStyle, sectionTitleStyle } from "@/utils/styles";
+import { sectionStyle, sectionSubtitleStyle, sectionTitleSpanStyle, sectionTitleStyle } from "@/utils/styles";
 import { Ban, Check } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export const Plans = () => {
-   const { formData, setFormData } = useFormStore()
-   const plans: PlansType[] = PlansData;
-   const router = useRouter();
+  const { setFormData } = useFormStore();
+  const plans: PlansType[] = PlansData;
+  const router = useRouter();
 
-   function handleChoosePlan(plan: any) {
-      let planFormated = "Plano Pro";
-      switch (plan) {
-         case 'PLANO BÁSICO':
-            planFormated = "Plano Básico";
-            break;
-         case 'PLANO PRIME':
-            planFormated = "Plano Prime";
-            break;
-         case 'PLANO PRO':
-            planFormated = "Plano Pro";
-            break;
-         default:
-            planFormated = "Plano Pro";
-            break;
-      }
-      handleFormatePlan(planFormated)
-   }
+  function handleChoosePlan(plan: string) {
+    let planFormated: "Plano Básico" | "Plano Prime" | "Plano Pro" = "Plano Pro";
+    switch (plan) {
+      case "PLANO BÁSICO":
+        planFormated = "Plano Básico";
+        break;
+      case "PLANO PRIME":
+        planFormated = "Plano Prime";
+        break;
+      case "PLANO PRO":
+        planFormated = "Plano Pro";
+        break;
+    }
+    setFormData({ signature: planFormated });
+    router.push("/register");
+  }
 
-   function handleFormatePlan(plan: any) {
-      setFormData({ signature: plan })
-      router.push('/register');
-   }
-
-   return (
-      <section id="plans" className={sectionStyle}>
-         <div className="absolute top-0">
-            <img src="/black_divider_top.png" alt="black_divider_top" />
-         </div>
-         <div className="container mx-auto p-2">
-            <h1 data-aos="fade-down" className={sectionTitleStyle}>Nossos <span className={sectionTitleSpanStyle}>Planos</span></h1>
-            <h2 className={sectionSubtitleStyle}>Selecione o plano que se adapta aos seus objetivos de condicionamento físico.</h2>
-            <div className="flex justify-center items-center sm:items-start flex-col sm:flex-row gap-5 flex-wrap">
-               {plans.map(plan => (
-                  <div key={plan.id} className={`rounded-xl p-4 sm:p-5 w-80 sm:w-[400px] bg-black border-2 hover:brightness-110 transition
-                     border-[var(--secondary-color)] hover:border-[var(--primary-color)]
-                     `}
-                  >
-                     <div className="flex flex-col gap-4">
-                        <p className="text-xl sm:text-2xl font-bold">{plan.title}</p>
-                        <p className="text-sm text-zinc-300">{plan.description}</p>
-                        <div className="flex items-center gap-2">
-                           <p className="text-lg">R$ <span className="text-2xl sm:text-3xl font-bold">{plan.price.toLocaleString('pt-BR')}</span></p>
-                           <p>por mês</p>
-                        </div>
-                     </div>
-                     <span className="w-full h-[2px] bg-zinc-800 block my-6"></span>
-                     <div className="flex flex-col gap-4">
-                        <ul>
-                           {plan.accessFeatures.map((feat, index) => (
-                              <li key={index} className="flex items-center gap-2 text-sm mb-3">
-                                 <Check className="size-4 text-green-600" />
-                                 <p>{feat}</p>
-                              </li>
-                           ))}
-                           {plan.lockedFeatures?.map((feat, index) => (
-                              <li key={index} className="flex items-center gap-2 text-sm mb-3">
-                                 <Ban className="size-4 text-red-600" />
-                                 <p className="opacity-50">{feat}</p>
-                              </li>
-                           ))}
-                        </ul>
-                     </div>
-                     <Link href={'/register'} className={buttonStyle+' mt-6 w-full text-center'}>Escolher este plano</Link>
+  return (
+    <section id="plans" className={`${sectionStyle} relative overflow-hidden`}>
+      <div className="absolute top-0 w-full">
+        <img src="/black_divider_top.png" alt="black_divider_top" className="w-full" />
+      </div>
+      <div className="container mx-auto px-4 py-20">
+        <h1 data-aos="fade-down" className={sectionTitleStyle}>Nossos <span className={sectionTitleSpanStyle}>Planos</span></h1>
+        <h2 className={`${sectionSubtitleStyle} max-w-2xl mx-auto text-center`}>Selecione o plano que se adapta aos seus objetivos de condicionamento físico.</h2>
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-stretch gap-8 mt-14">
+          {plans.map(plan => (
+            <div key={plan.id} data-aos="zoom-in">
+              <div
+                className="group w-80 sm:w-[380px] rounded-2xl p-6 bg-zinc-900/80 backdrop-blur border border-zinc-800 transition-all duration-300 hover:-translate-y-2 hover:border-[var(--primary-color)] hover:shadow-xl hover:shadow-orange-500/20">
+                <div className="flex flex-col gap-4">
+                  <p className="text-2xl font-extrabold">{plan.title}</p>
+                  <p className="text-sm text-zinc-400 leading-relaxed">{plan.description}</p>
+                  <div className="flex items-end gap-2">
+                    <p className="text-lg">R$</p>
+                    <p className="text-4xl font-extrabold text-[var(--primary-color)]">{plan.price.toLocaleString("pt-BR")}</p>
+                    <p className="text-sm text-zinc-400 mb-1">/ mês</p>
                   </div>
-               ))}
+                </div>
+                <span className="w-full h-px bg-zinc-800 block my-6"></span>
+                <ul>
+                  {plan.accessFeatures.map((feat, index) => (
+                    <li key={index} className="flex items-center gap-2 text-sm mb-3">
+                      <Check className="size-4 text-green-500" />
+                      <p>{feat}</p>
+                    </li>
+                  ))}
+                  {plan.lockedFeatures?.map((feat, index) => (
+                    <li key={index} className="flex items-center gap-2 text-sm mb-3 opacity-50">
+                      <Ban className="size-4 text-red-500" />
+                      <p>{feat}</p>
+                    </li>
+                  ))}
+                </ul>
+                <Button onClick={() => handleChoosePlan(plan.title)}
+                  className={`buttonStyle! mt-6 w-full group-hover:bg-[var(--primary-color)] group-hover:text-black transition`}
+                >
+                  Escolher este plano
+                </Button>
+              </div>
             </div>
-         </div>
-      </section>
-   )
-}
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};

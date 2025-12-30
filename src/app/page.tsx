@@ -9,17 +9,17 @@ import { Footer } from "@/components/footer";
 import { Plans } from "./(auth)/_components/plans";
 
 export default function Home() {
-   return (
-      <div className="relative">
-         <Header showNav />
-         <Hero />
-         <About />
-         <Services />
-         <Trainers />
-         <Plans />
-         <Reviews/>
-         <Faq />
-         <Footer />
-      </div>
-   );
+  return (
+    <div className="relative">
+      <Header showNav />
+      <Hero />
+      <About />
+      <Services />
+      <Trainers />
+      <Plans />
+      <Reviews />
+      <Faq />
+      <Footer />
+    </div>
+  );
 }

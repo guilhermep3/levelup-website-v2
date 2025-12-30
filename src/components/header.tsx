@@ -1,5 +1,5 @@
-"use client"
-import Image from "next/image"
+"use client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/utils/isMobile";
 import { useRouter } from "next/navigation";
@@ -8,118 +8,145 @@ import { Button } from "./ui/button";
 import { buttonStyle } from "@/utils/styles";
 
 const headerLinks = [
-   { link: 'hero', name: 'Inicio' },
-   { link: 'about', name: 'Sobre' },
-   { link: 'services', name: 'Serviços' },
-   { link: 'trainers', name: 'Treinadores' },
-   { link: 'plans', name: 'Planos' },
-   { link: 'review', name: 'Avaliações' },
-   { link: 'faq', name: 'FAQ' },
-]
+  { link: "hero", name: "Inicio" },
+  { link: "about", name: "Sobre" },
+  { link: "services", name: "Serviços" },
+  { link: "trainers", name: "Treinadores" },
+  { link: "plans", name: "Planos" },
+  { link: "review", name: "Avaliações" },
+  { link: "faq", name: "FAQ" },
+];
 
-type props = {
-   showNav: boolean
-}
-export const Header = ({ showNav }: props) => {
-   const [isVisible, setIsVisible] = useState<boolean>(false);
-   const [isMobileNav, setIsMobileNav] = useState<boolean>(false);
-   const [activeSection, setActiveSection] = useState<string | null>(null);
-   const isMobile = useIsMobile(768);
-   const router = useRouter()
+type Props = {
+  showNav: boolean;
+};
 
-   useEffect(() => {
-      const ScrollEvt = () => {
-         if (window.scrollY > 0) {
-            setIsVisible(true);
-         } else {
-            setIsVisible(false);
-         }
-      }
-      window.addEventListener('scroll', ScrollEvt);
-      ScrollEvt();
+export const Header = ({ showNav }: Props) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
-      return () => {
-         window.removeEventListener('scroll', ScrollEvt)
-      }
-   }, []);
+  const isMobile = useIsMobile(768);
+  const router = useRouter();
 
-   useEffect(() => {
-      const sections = headerLinks.map(link => document.getElementById(link.link));
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-      const observer = new IntersectionObserver(
-         (entries) => {
-            entries.forEach(entry => {
-               if (entry.isIntersecting) {
-                  setActiveSection(entry.target.id);
-               }
-            });
-         },
-         {
-            threshold: 0.6, // Ajuste conforme necessário
-         }
-      );
+  useEffect(() => {
+    const sections = headerLinks.map(l =>
+      document.getElementById(l.link)
+    );
 
-      sections.forEach(section => {
-         if (section) observer.observe(section);
-      });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
 
-      return () => {
-         sections.forEach(section => {
-            if (section) observer.unobserve(section);
-         });
-      };
-   }, []);
+    sections.forEach(section => section && observer.observe(section));
 
+    return () => {
+      sections.forEach(section => section && observer.unobserve(section));
+    };
+  }, []);
 
-   function handleGoRouter(route: string) {
-      router.push(`/${route}`);
-   };
+  function handleRoute(route: string) {
+    router.push(`/${route}`);
+  }
 
-   return (
-      <header className={`fixed w-full bg-transparent text-white py-4 px-3 z-40 transition duration-200 top-0 left-0 right-0
-         ${!isMobile && isVisible ? 'header-bg' : ''} ${isMobile && 'header-bg'}`}>
-         <div className="container mx-auto flex justify-between items-center w-full">
-            <div onClick={() => handleGoRouter("")} className="font-bold flex items-center gap-1 cursor-pointer">
-               <Image src={'/logo-removebg.png'} alt="logo" width={56} height={56} />
-               <LevelUp textSize="text-xl lg:text-3xl" />
-            </div>
-            {showNav &&
-               <nav className="hidden lg:block w-full mx-1">
-                  <ul className="flex justify-center sm:gap-5 md:gap-10 text-lg z-40">
-                     {headerLinks.map((link) => (
-                        <li key={link.link}
-                           className={`linkHeader relative cursor-pointer ${activeSection === link.link ? 'active-link' : ''}`}
-                        >
-                           <a href={`#${link.link}`}>{link.name}</a>
-                        </li>
-                     ))}
-                  </ul>
-               </nav>
-            }
-            <div className="flex items-center gap-2">
-               <Button className={buttonStyle + ' z-20'} onClick={() => handleGoRouter("register")}>Cadastrar</Button>
-               {showNav &&
-                  <div className={`block lg:hidden hamburger ${isMobileNav ? 'hamburger-active' : ''}`}
-                     onClick={() => setIsMobileNav(!isMobileNav)}>
-                     <span className="w-full h-1 bg-white"></span>
-                     <span className="w-full h-1 bg-white"></span>
-                     <span className="w-full h-1 bg-white"></span>
-                  </div>
-               }
-            </div>
-            {showNav &&
-               <nav className={`mobile-nav fixed top-20 -right-full p-10 z-30 transition-all duration-300
-                  ${isMobileNav ? 'show-mobile-nav' : ''}`}>
-                  <ul className={`flex flex-col justify-center items-center gap-5 `}>
-                     <li className="linkHeader" onClick={() => setIsMobileNav(!isMobileNav)}><a href="#services">Serviços</a></li>
-                     <li className="linkHeader" onClick={() => setIsMobileNav(!isMobileNav)}><a href="#plans">Planos</a></li>
-                     <li className="linkHeader" onClick={() => setIsMobileNav(!isMobileNav)}><a href="#trainers">Treinadores</a></li>
-                     <li className="linkHeader" onClick={() => setIsMobileNav(!isMobileNav)}><a href="#review">Avaliação</a></li>
-                     <li className="linkHeader" onClick={() => setIsMobileNav(!isMobileNav)}><a href="#faq">FAQ</a></li>
-                  </ul>
-               </nav>
-            }
-         </div>
-      </header>
-   )
-}
+  return (
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
+        ${scrolled || isMobile
+        ? "bg-zinc-950/80 backdrop-blur-md border-b border-white/10"
+        : "bg-zinc-950/30"}
+      `}
+    >
+      <div className="container mx-auto p-4 flex items-center justify-between">
+        <div
+          onClick={() => handleRoute("")}
+          className="flex items-center gap-2 cursor-pointer select-none"
+        >
+          <Image src="/logo-removebg.png" alt="Logo" width={48} height={48} />
+          <LevelUp textSize="text-xl lg:text-3xl" />
+        </div>
+        {showNav && (
+          <nav className="hidden lg:flex flex-1 justify-center">
+            <ul className="flex gap-8 text-base font-medium">
+              {headerLinks.map(link => (
+                <li key={link.link} className="relative group">
+                  <a href={`#${link.link}`}
+                    className={`
+                      transition-colors
+                      ${activeSection === link.link
+                        ? "text-[var(--secondary-color)]"
+                        : "text-white/80 hover:text-white"}
+                    `}
+                  >
+                    {link.name}
+                  </a>
+                  <span className={`
+                      absolute left-0 -bottom-1 h-[2px] bg-[var(--primary-color)]
+                      transition-all duration-300
+                      ${activeSection === link.link
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"}
+                    `}
+                  />
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+        <div className="flex items-center gap-3">
+          <Button className={`${buttonStyle} z-20`}
+            onClick={() => handleRoute("register")}
+          >
+            Cadastrar
+          </Button>
+          {showNav && (
+            <button onClick={() => setMobileNavOpen(!mobileNavOpen)}
+              className={`
+                lg:hidden flex flex-col gap-1.5 w-7 z-30
+                ${mobileNavOpen && "opacity-80"}
+              `}
+            >
+              <span className="h-0.5 w-full bg-white rounded" />
+              <span className="h-0.5 w-full bg-white rounded" />
+              <span className="h-0.5 w-full bg-white rounded" />
+            </button>
+          )}
+        </div>
+      </div>
+      {showNav && (
+        <nav
+          className={`
+            fixed top-[72px] right-0 h-[calc(100vh-72px)] w-full sm:w-80 bg-zinc-950/95 backdrop-blur-md
+            transition-transform duration-300 lg:hidden
+            ${mobileNavOpen ? "translate-x-0" : "translate-x-full"}
+          `}
+        >
+          <ul className="flex flex-col items-center justify-center h-full gap-6 text-lg">
+            {headerLinks.map(link => (
+              <li key={link.link}>
+                <a href={`#${link.link}`} onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-[var(--primary-color)] transition-colors"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </header>
+  );
+};

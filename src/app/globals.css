@@ -1,7 +1,5 @@
-@import "tailwindcss";
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -11,7 +9,6 @@
   --secondary-color: #d9c40a;
   --third-color: #e21313;
   --black: #0a0a0a;
-  --black-opaque: #0a0a0a80;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
@@ -86,6 +83,12 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@layer components {
+  .buttonStyle {
+    @apply bg-[var(--primary-color)] text-black px-4 py-2 rounded-md font-semibold cursor-pointer inline-block hover:bg-[var(--secondary-color)] transition duration-200;
+  }
+}
+
 html{
   scroll-behavior: smooth;
   scroll-padding: 60px;
@@ -97,10 +100,6 @@ body {
 .show-mobile-nav{
   right: 0;
   width: 50%;
-}
-.header-bg{
-  background-color: var(--black-opaque);
-  backdrop-filter: blur(12px);
 }
 .linkHeader::before {
   content: '';

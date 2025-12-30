@@ -1,54 +1,62 @@
 import Image from "next/image";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import { GiWeightLiftingUp } from "react-icons/gi";
-import { FaDumbbell } from 'react-icons/fa';
+import { FaDumbbell } from "react-icons/fa";
 import { bigButtonStyle, containerStyle, sectionStyle } from "@/utils/styles";
 import Link from "next/link";
 
 export const Hero = () => {
 
-   return (
-      <section id="hero" className={sectionStyle + ' py-10 sm:py-24 min-h-screen'}>
-         <div className="absolute inset-0 z-[-10] h-full  w-full bg-transparent bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
-            <div className="absolute inset-x-0 top-0 m-auto h-[310px] w-[310px] rounded-full bg-yellow-400 opacity-20 blur-[100px]"></div>
-         </div>
-         <div className="absolute z-[-10] h-full  w-full bg-transparent">
-            <div className="absolute h-full w-full bg-[radial-gradient(#242424_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-         </div>
-         <div className="absolute inset-0 z-[-10] h-full w-full bg-transparent bg-[linear-gradient(to_right,#323232_1px,transparent_1px),linear-gradient(to_bottom,#323232_1px,transparent_1px)] bg-[size:7rem_4rem]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#ff730010,transparent)]"></div>
-         </div>
-         <div className="absolute bottom-0 rotate-180">
-            <img src="/black_divider_top.png" alt="black_divider_top" />
-         </div>
-         <div className={`${containerStyle} flex justify-center items-center flex-col sm:flex-row h-full overflow-x-hidden`}>
-            <div className="flex-1">
-               <div className="flex flex-col items-center gap-6 text-center mt-5 sm:mt-0">
-                  <h1 data-aos="zoom-in" className="flex flex-col gap-2 h1-hero text-2xl sm:text-3xl lg:text-4xl font-bold">Alcance seu
-                     <br />
-                     <strong className="text-3xl sm:text-4xl lg:text-5xl text-[var(--primary-color)]">POTENCIAL MÁXIMO</strong><br />
-                     com LevelUP
-                  </h1>
-                  <p data-aos="fade-down" className="text-sm sm:text-base">Na <span className="font-semibold">LevelUP</span>, oferecemos estrutura de ponta, treinos personalizados e um ambiente motivador para você alcançar seus objetivos. Aqui é o seu lugar.</p>
-                  <Link href={'/register'}
-                     className={bigButtonStyle}
-                     data-aos="fade-up"
-                  >Começar minha jornada</Link>
-               </div>
-            </div>
-            <div data-aos="zoom-in" className="flex-1 flex justify-center items-center relative w-full pt-11 sm:pt-0 mt-7 sm:mt-0 ">
-               <Image src={'/hero.png'} alt="imagem do hero"
-                  width={200} height={200}
-                  className="w-56 sm:w-72 xl:w-[360px]" />
-               <BsFillLightningChargeFill className="text-[340px] sm:text-[390px] lg:text-[480px] absolute z-[-1] -mt-20 text-[var(--primary-color)]" />
-               <div className="icon-hero icon-hero1 absolute top-0 right-6 sm:right-12 lg:right-16 p-4 text-center border-2 border-[var(--primary-color)] rounded-full bg-zinc-900">
-                  <GiWeightLiftingUp className="size-6 sm:size-10" />
-               </div>
-               <div className="icon-hero icon-hero2 absolute bottom-0 left-6 sm:left-12 lg:left-16 p-4 text-center border-2 border-[var(--primary-color)] rounded-full bg-zinc-900">
-                  <FaDumbbell className="size-6 sm:size-10" />
-               </div>
-            </div>
-         </div>
-      </section>
-   )
-}
+  return (
+    <section id="hero" className={`${sectionStyle} relative min-h-screen py-16 sm:py-24 overflow-hidden`}>
+      <div className="absolute inset-0 z-[-10] bg-[radial-gradient(circle_at_30%_20%,rgba(255,183,0,0.15),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(255,115,0,0.12),transparent_55%)]"></div>
+      <div className="absolute inset-0 z-[-10] bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+      <div className="absolute bottom-0 rotate-180 w-full">
+        <img src="/black_divider_top.png" alt="black_divider_top" className="w-full" />
+      </div>
+      <div className={`${containerStyle} flex flex-col-reverse sm:flex-row items-center justify-between gap-14`}>
+        <div className="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left gap-6">
+          <h1 data-aos="zoom-in"
+            className="font-extrabold leading-tight tracking-tight text-3xl sm:text-4xl lg:text-5xl"
+          >
+            Alcance seu
+            <br />
+            <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent text-4xl sm:text-5xl lg:text-6xl">
+              POTENCIAL MÁXIMO
+            </span>
+            <br />
+            com LevelUP
+          </h1>
+          <p data-aos="fade-down" className="max-w-xl text-sm sm:text-base text-zinc-300">
+            Na <span className="font-semibold text-white">LevelUP</span>, você
+            encontra estrutura moderna, treinos personalizados e um ambiente
+            feito para quem quer evoluir de verdade.
+          </p>
+          <div data-aos="fade-down">
+            <Link href="/register"
+              className={`${bigButtonStyle} mt-2 shadow-lg shadow-yellow-500/20 hover:scale-105 transition-transform`}
+            >
+              Começar minha jornada
+            </Link>
+          </div>
+        </div>
+        <div data-aos="zoom-in"
+          className="flex-1 relative flex justify-center items-center"
+        >
+          <div className="absolute w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] rounded-full bg-yellow-500/20 blur-[90px]"></div>
+          <Image src="/hero.png" alt="imagem do hero"
+            width={360} height={360}
+            className="relative z-10 w-60 sm:w-80 xl:w-[380px]"
+          />
+          <BsFillLightningChargeFill className="absolute z-0 text-[360px] sm:text-[420px] lg:text-[520px] text-[var(--primary-color)] -mt-16" />
+          <div className="icon-hero absolute top-4 right-6 sm:right-14 p-4 rounded-full border border-yellow-500/40 bg-zinc-900/80 backdrop-blur shadow-lg shadow-yellow-500/20 animate-pulse hover:">
+            <GiWeightLiftingUp className="size-7 sm:size-9 text-yellow-400" />
+          </div>
+          <div className="icon-hero absolute bottom-4 left-6 sm:left-14 p-4 rounded-full border border-yellow-500/40 bg-zinc-900/80 backdrop-blur shadow-lg shadow-yellow-500/20 animate-pulse hover:">
+            <FaDumbbell className="size-7 sm:size-9 text-yellow-400" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
