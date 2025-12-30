@@ -1,5 +1,4 @@
 "use client"
-import { Button } from "@/components/ui/button";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -162,11 +161,11 @@ export const FormRegister = () => {
               </FormItem>
             )} />
           </div>
-          <Button type="submit"
-            className="w-full bg-[var(--primary-color)] text-lg hover:brightness-110 hover:bg-[var(--primary-color)] mt-2 text-black cursor-pointer"
+          <button type="submit"
+            className="w-full bg-(--primary-color) text-lg hover:brightness-110 hover:bg-(--primary-color) mt-2 text-black cursor-pointer"
           >
             Enviar
-          </Button>
+          </button>
         </form>
       </FormProvider>
       {isModalOpen && <Modal isModalOpen={isModalOpen} setIsModalOpen={() => setIsModalOpen(!isModalOpen)} />}

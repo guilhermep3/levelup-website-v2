@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useIsMobile } from "@/utils/isMobile";
 import { useRouter } from "next/navigation";
 import LevelUp from "./levelup-txt";
-import { Button } from "./ui/button";
-import { buttonStyle } from "@/utils/styles";
+import { Menu } from "lucide-react";
+import { MenuBtn } from "./menu-btn";
 
 const headerLinks = [
   { link: "hero", name: "Inicio" },
@@ -23,7 +23,7 @@ type Props = {
 
 export const Header = ({ showNav }: Props) => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   const isMobile = useIsMobile(768);
@@ -87,14 +87,14 @@ export const Header = ({ showNav }: Props) => {
                     className={`
                       transition-colors
                       ${activeSection === link.link
-                        ? "text-[var(--secondary-color)]"
+                        ? "text-(--secondary-color)"
                         : "text-white/80 hover:text-white"}
                     `}
                   >
                     {link.name}
                   </a>
                   <span className={`
-                      absolute left-0 -bottom-1 h-[2px] bg-[var(--primary-color)]
+                      absolute left-0 -bottom-1 h-0.5 bg-(--primary-color)
                       transition-all duration-300
                       ${activeSection === link.link
                       ? "w-full"
@@ -107,38 +107,29 @@ export const Header = ({ showNav }: Props) => {
           </nav>
         )}
         <div className="flex items-center gap-3">
-          <Button className={`${buttonStyle} z-20`}
+          <button className="buttonStyle z-20"
             onClick={() => handleRoute("register")}
           >
             Cadastrar
-          </Button>
+          </button>
           {showNav && (
-            <button onClick={() => setMobileNavOpen(!mobileNavOpen)}
-              className={`
-                lg:hidden flex flex-col gap-1.5 w-7 z-30
-                ${mobileNavOpen && "opacity-80"}
-              `}
-            >
-              <span className="h-0.5 w-full bg-white rounded" />
-              <span className="h-0.5 w-full bg-white rounded" />
-              <span className="h-0.5 w-full bg-white rounded" />
-            </button>
+            <MenuBtn isNavbarOpen={isNavbarOpen} setIsNavbarOpen={setIsNavbarOpen} />
           )}
         </div>
       </div>
       {showNav && (
         <nav
           className={`
-            fixed top-[72px] right-0 h-[calc(100vh-72px)] w-full sm:w-80 bg-zinc-950/95 backdrop-blur-md
+            fixed top-18 right-0 h-[calc(100vh-72px)] w-full sm:w-80 bg-zinc-950/95 backdrop-blur-md
             transition-transform duration-300 lg:hidden
-            ${mobileNavOpen ? "translate-x-0" : "translate-x-full"}
+            ${isNavbarOpen ? "translate-x-0" : "translate-x-full"}
           `}
         >
           <ul className="flex flex-col items-center justify-center h-full gap-6 text-lg">
             {headerLinks.map(link => (
               <li key={link.link}>
-                <a href={`#${link.link}`} onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-[var(--primary-color)] transition-colors"
+                <a href={`#${link.link}`} onClick={() => setIsNavbarOpen(false)}
+                  className="hover:text-(--primary-color) transition-colors"
                 >
                   {link.name}
                 </a>

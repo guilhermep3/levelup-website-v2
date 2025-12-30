@@ -85,7 +85,25 @@
 
 @layer components {
   .buttonStyle {
-    @apply bg-[var(--primary-color)] text-black px-4 py-2 rounded-md font-semibold cursor-pointer inline-block hover:bg-[var(--secondary-color)] transition duration-200;
+    @apply bg-(--primary-color) text-black px-4 py-2 rounded-md font-semibold cursor-pointer inline-block hover:bg-(--secondary-color) transition duration-200;
+  }
+  .bigButtonStyle {
+    @apply bg-(--primary-color) text-black px-8 py-4 rounded-md font-bold text-xl cursor-pointer inline-block hover:bg-(--secondary-color) transition duration-200;
+  }
+  .sectionStyle{
+    @apply relative w-full py-14 sm:py-32 flex flex-col justify-center items-center;
+  }
+  .sectionSubtitleStyle {
+    @apply text-zinc-400 text-base sm:text-lg mt-8 mb-12 text-center;
+  }
+  .sectionTitleSpanStyle {
+    @apply text-(--primary-color);
+  }
+  .sectionTitleStyle {
+    @apply text-2xl sm:text-4xl text-center uppercase font-bold;
+  }
+  .containerStyle {
+    @apply container mx-auto py-6 sm:py-12 px-2;
   }
 }
 
@@ -93,6 +111,7 @@ html{
   scroll-behavior: smooth;
   scroll-padding: 60px;
 }
+
 body {
   font-family: "Roboto", sans-serif;
 }

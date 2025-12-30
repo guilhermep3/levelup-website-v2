@@ -44,7 +44,7 @@ const percentage = ((currentSubs - lastSubs) / lastSubs) * 100
 
 export function AboutChart() {
   return (
-    <div data-aos="zoom-in" className="w-full max-w-[480px]">
+    <div data-aos="zoom-in" className="w-full max-w-120">
       <Card className="w-full bg-zinc-900/80 backdrop-blur border border-zinc-800">
         <CardHeader>
           <CardTitle className="text-lg">
@@ -76,7 +76,7 @@ export function AboutChart() {
         <CardFooter className="flex-col items-start gap-2 text-sm">
           <div className="flex items-center gap-2 font-medium">
             Aumento de {percentage.toFixed(2)}% este mês
-            <IoMdTrendingUp className="h-4 w-4 text-[var(--primary-color)]" />
+            <IoMdTrendingUp className="h-4 w-4 text-(--primary-color)" />
           </div>
           <div className="text-zinc-400">
             Total de assinantes nos últimos 6 meses

@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle
+} from "@/components/ui/dialog"
 import { useFormStore } from "@/store/formStore"
-import { buttonStyle } from "@/utils/styles"
 
 type props = {
   isModalOpen: boolean,
@@ -19,7 +19,7 @@ export const Modal = ({ isModalOpen, setIsModalOpen }: props) => {
         </DialogHeader>
         <div className="flex justify-center flex-col gap-5 text-center">
           <p>Nós mandaremos um email para <strong>{formData.email}</strong> para você finalizar a última etapa.</p>
-          <Button className={buttonStyle} onClick={setIsModalOpen}>Fechar</Button>
+          <button className="buttonStyle" onClick={setIsModalOpen}>Fechar</button>
         </div>
       </DialogContent>
     </Dialog>

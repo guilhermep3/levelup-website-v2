@@ -10,12 +10,12 @@ export const AboutItem = ({ item }: props) => {
 
   return (
     <div data-aos="zoom-in">
-      <Card className="group w-40 sm:w-72 p-4 sm:p-6 flex flex-col gap-3 bg-zinc-900/80 backdrop-blur border border-zinc-800 hover:border-[var(--primary-color)]/50 transition-all duration-300">
+      <Card className="group w-40 sm:w-72 p-4 sm:p-6 flex flex-col gap-3 bg-zinc-900/80 backdrop-blur border border-zinc-800 hover:border-(--primary-color)/50 transition-all duration-300">
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-full bg-zinc-800 transition duration-300 group-hover:bg-[var(--primary-color)]">
-            <Icon className="size-5 sm:size-7 text-[var(--primary-color)] group-hover:text-black" />
+          <div className="p-3 rounded-full bg-zinc-800 transition duration-300 group-hover:bg-(--primary-color)">
+            <Icon className="size-5 sm:size-7 text-(--primary-color) group-hover:text-black" />
           </div>
-          <p className="text-xl sm:text-2xl font-extrabold text-[var(--primary-color)]">
+          <p className="text-xl sm:text-2xl font-extrabold text-(--primary-color)">
             {item.number}
           </p>
         </div>

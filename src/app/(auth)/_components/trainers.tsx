@@ -1,5 +1,4 @@
 import { TrainersData } from "@/data/trainers";
-import { containerStyle, sectionSubtitleStyle, sectionTitleSpanStyle, sectionTitleStyle } from "@/utils/styles";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 export const Trainers = () => {
@@ -7,11 +6,11 @@ export const Trainers = () => {
 
 	return (
 		<section id="trainers" className="relative bg-black overflow-hidden">
-			<div className={containerStyle}>
-				<h1 data-aos="fade-down" className={sectionTitleStyle}>
-					Nossos <span className={sectionTitleSpanStyle}>Treinadores</span>
+			<div className="containerStyle">
+				<h1 data-aos="fade-down" className="sectionTitleStyle">
+					Nossos <span className="sectionTitleSpanStyle">Treinadores</span>
 				</h1>
-				<h2 className={sectionSubtitleStyle}>
+				<h2 className="sectionSubtitleStyle">
 					Os 4 treinadores mais experientes dentre os mais de 50 do nosso time
 				</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10 lg:gap-6 py-14 place-items-center">
@@ -28,10 +27,12 @@ export const Trainers = () => {
 								<div className="bg-[#060606] p-4">
 									<div className="flex items-end gap-3">
 										<p className="text-lg font-bold">{trainer.name}</p>
-										<span className="text-[var(--secondary-color)] text-sm font-semibold">+{trainer.experience} exp</span>
+										<span className="text-(--secondary-color) text-sm font-semibold">+{trainer.experience} exp</span>
 									</div>
 									<p className="my-2 text-sm text-zinc-400">{trainer.role}</p>
-									<div className="flex items-center gap-2 mt-3 font-semibold text-sm group-hover:text-[var(--secondary-color)] transition">
+									<div
+										className="flex items-center gap-2 mt-3 font-semibold text-sm group-hover:text-(--secondary-color) transition"
+									>
 										<a href="#">Ver mais</a>
 										<FaLongArrowAltRight className="text-lg transition-transform group-hover:translate-x-1" />
 									</div>

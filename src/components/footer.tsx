@@ -3,10 +3,10 @@ import { IoMdMail } from "react-icons/io";
 import { BsFillTelephoneFill } from "react-icons/bs";
 
 const footerH1Style =
-  "text-lg sm:text-xl font-bold text-[var(--primary-color)] uppercase tracking-wide";
+  "text-lg sm:text-xl font-bold text-(--primary-color) uppercase tracking-wide";
 
 const linkStyle =
-  "text-sm sm:text-base text-gray-300 hover:text-[var(--primary-color)] transition-colors";
+  "text-sm sm:text-base text-gray-300 hover:text-(--primary-color) transition-colors";
 
 export const Footer = () => {
   return (
@@ -27,15 +27,15 @@ export const Footer = () => {
             <h1 className={footerH1Style}>Horários</h1>
             <ul className="flex flex-col gap-2 text-sm sm:text-base text-gray-300">
               <li className="flex justify-between">
-                <span className="font-semibold text-[var(--primary-color)]/80">Seg a Sex</span>
+                <span className="font-semibold text-(--primary-color)/80">Seg a Sex</span>
                 <span>24 horas</span>
               </li>
               <li className="flex justify-between">
-                <span className="font-semibold text-[var(--primary-color)]/80">Sábado</span>
+                <span className="font-semibold text-(--primary-color)/80">Sábado</span>
                 <span>06:00 - 00:00</span>
               </li>
               <li className="flex justify-between">
-                <span className="font-semibold text-[var(--primary-color)]/80">Domingo</span>
+                <span className="font-semibold text-(--primary-color)/80">Domingo</span>
                 <span>07:00 - 23:00</span>
               </li>
             </ul>
@@ -44,15 +44,15 @@ export const Footer = () => {
             <h1 className={footerH1Style}>Redes Sociais</h1>
             <ul className="flex flex-col gap-3">
               <li className="flex items-center gap-3 group cursor-pointer">
-                <FaInstagram className="text-[var(--secondary-color)] text-lg group-hover:scale-110 transition-transform" />
+                <FaInstagram className="text-(--secondary-color) text-lg group-hover:scale-110 transition-transform" />
                 <span className={linkStyle}>Instagram</span>
               </li>
               <li className="flex items-center gap-3 group cursor-pointer">
-                <FaFacebook className="text-[var(--secondary-color)] text-lg group-hover:scale-110 transition-transform" />
+                <FaFacebook className="text-(--secondary-color) text-lg group-hover:scale-110 transition-transform" />
                 <span className={linkStyle}>Facebook</span>
               </li>
               <li className="flex items-center gap-3 group cursor-pointer">
-                <FaTwitter className="text-[var(--secondary-color)] text-lg group-hover:scale-110 transition-transform" />
+                <FaTwitter className="text-(--secondary-color) text-lg group-hover:scale-110 transition-transform" />
                 <span className={linkStyle}>Twitter</span>
               </li>
             </ul>
@@ -61,11 +61,11 @@ export const Footer = () => {
             <h1 className={footerH1Style}>Contato</h1>
             <ul className="flex flex-col gap-3 text-sm sm:text-base text-gray-300">
               <li className="flex items-center gap-3">
-                <IoMdMail className="text-[var(--secondary-color)] text-lg" />
+                <IoMdMail className="text-(--secondary-color) text-lg" />
                 <span>@levelupgym</span>
               </li>
               <li className="flex items-center gap-3">
-                <BsFillTelephoneFill className="text-[var(--secondary-color)] text-lg" />
+                <BsFillTelephoneFill className="text-(--secondary-color) text-lg" />
                 <span>+55 99 99999-9999</span>
               </li>
             </ul>
@@ -76,7 +76,7 @@ export const Footer = () => {
           <a
             href="https://github.com/guilhermep3/levelup-academia"
             target="_blank"
-            className="hover:text-[var(--primary-color)] transition-colors"
+            className="hover:text-(--primary-color) transition-colors"
           >
             Desenvolvido por Guilherme Pereira
           </a>

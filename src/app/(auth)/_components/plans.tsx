@@ -1,9 +1,7 @@
 "use client"
-import { Button } from "@/components/ui/button";
 import { PlansData } from "@/data/plans";
 import { useFormStore } from "@/store/formStore";
 import { PlansType } from "@/types/plans";
-import { sectionStyle, sectionSubtitleStyle, sectionTitleSpanStyle, sectionTitleStyle } from "@/utils/styles";
 import { Ban, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -30,24 +28,34 @@ export const Plans = () => {
   }
 
   return (
-    <section id="plans" className={`${sectionStyle} relative overflow-hidden`}>
+    <section id="plans" className="sectionStyle relative overflow-hidden">
       <div className="absolute top-0 w-full">
         <img src="/black_divider_top.png" alt="black_divider_top" className="w-full" />
       </div>
       <div className="container mx-auto px-4 py-20">
-        <h1 data-aos="fade-down" className={sectionTitleStyle}>Nossos <span className={sectionTitleSpanStyle}>Planos</span></h1>
-        <h2 className={`${sectionSubtitleStyle} max-w-2xl mx-auto text-center`}>Selecione o plano que se adapta aos seus objetivos de condicionamento físico.</h2>
-        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-stretch gap-8 mt-14">
+        <h1 data-aos="fade-down" className="sectionTitleStyle">
+          Nossos <span className="sectionTitleSpanStyle">Planos</span>
+        </h1>
+        <h2 className="sectionSubtitleStyle max-w-2xl mx-auto">
+          Selecione o plano que se adapta aos seus objetivos de condicionamento físico.
+        </h2>
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-8 mt-14">
           {plans.map(plan => (
             <div key={plan.id} data-aos="zoom-in">
               <div
-                className="group w-80 sm:w-[380px] rounded-2xl p-6 bg-zinc-900/80 backdrop-blur border border-zinc-800 transition-all duration-300 hover:-translate-y-2 hover:border-[var(--primary-color)] hover:shadow-xl hover:shadow-orange-500/20">
+                className="group w-80 sm:w-96 rounded-2xl p-6 bg-zinc-900/80 backdrop-blur border border-zinc-800 transition-all duration-300 hover:-translate-y-2 hover:border-(--primary-color) hover:shadow-xl hover:shadow-orange-500/20">
                 <div className="flex flex-col gap-4">
-                  <p className="text-2xl font-extrabold">{plan.title}</p>
-                  <p className="text-sm text-zinc-400 leading-relaxed">{plan.description}</p>
+                  <p className="text-2xl font-extrabold">
+                    {plan.title}
+                  </p>
+                  <p className="text-sm text-zinc-400 leading-relaxed">
+                    {plan.description}
+                  </p>
                   <div className="flex items-end gap-2">
                     <p className="text-lg">R$</p>
-                    <p className="text-4xl font-extrabold text-[var(--primary-color)]">{plan.price.toLocaleString("pt-BR")}</p>
+                    <p className="text-4xl font-extrabold text-(--primary-color)">
+                      {plan.price.toLocaleString("pt-BR")}
+                    </p>
                     <p className="text-sm text-zinc-400 mb-1">/ mês</p>
                   </div>
                 </div>
@@ -66,11 +74,11 @@ export const Plans = () => {
                     </li>
                   ))}
                 </ul>
-                <Button onClick={() => handleChoosePlan(plan.title)}
-                  className={`buttonStyle! mt-6 w-full group-hover:bg-[var(--primary-color)] group-hover:text-black transition`}
+                <button onClick={() => handleChoosePlan(plan.title)}
+                  className="buttonStyle mt-6 w-full group-hover:text-black transition"
                 >
                   Escolher este plano
-                </Button>
+                </button>
               </div>
             </div>
           ))}
