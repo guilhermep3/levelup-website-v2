@@ -12,7 +12,7 @@ export const Faq = () => {
   }
 
   return (
-    <section id="faq" className="relative py-24 bg-black overflow-hidden">
+    <section id="faq" className="relative pt-20 pb-40 bg-black overflow-hidden">
       <div className="absolute inset-0 z-[-1] bg-[radial-gradient(circle_at_50%_20%,rgba(255,115,0,0.12),transparent_45%)]"></div>
       <div className="container mx-auto px-4">
         <h1 data-aos="fade-down" className="sectionTitleStyle">

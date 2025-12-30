@@ -1,4 +1,5 @@
 "use client"
+import { DividerSVG } from "@/components/svg/divider";
 import { PlansData } from "@/data/plans";
 import { useFormStore } from "@/store/formStore";
 import { PlansType } from "@/types/plans";
@@ -29,9 +30,7 @@ export const Plans = () => {
 
   return (
     <section id="plans" className="sectionStyle relative overflow-hidden">
-      <div className="absolute top-0 w-full">
-        <img src="/black_divider_top.png" alt="black_divider_top" className="w-full" />
-      </div>
+      <DividerSVG top />
       <div className="container mx-auto px-4 py-20">
         <h1 data-aos="fade-down" className="sectionTitleStyle">
           Nossos <span className="sectionTitleSpanStyle">Planos</span>
@@ -84,6 +83,7 @@ export const Plans = () => {
           ))}
         </div>
       </div>
+      <DividerSVG rotate />
     </section>
   );
 };

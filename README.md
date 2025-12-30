@@ -1,15 +1,16 @@
 # LevelUP - Landing Page
 
-Um site para uma academia com sistema de cadastro <a href="https://github.com/guilhermep3/levelup-website-v2" target="_blank">Acessar</a> 
-<img src="https://github.com/user-attachments/assets/dd4b2e2d-8955-4172-a4d3-571e274e3b1b" alt="imagem do projeto LevelUP">
+Uma landing page para uma academia com sistema de cadastro.
+<a href="https://github.com/guilhermep3/levelup-website-v2" target="_blank">Acessar</a> 
+
+<img alt="Image" src="https://github.com/user-attachments/assets/836eff61-9334-4bba-bb0f-cc7a13cfac53" />
 
 ## Tecnologias Utilizadas
-- React.js ( com Typescript )
-- Next.js (App Router)
+- Next.js (Framework React)
 - React Hook Form + Zod (validação de formulários)
 - React Number Format (formatar inputs)
 - Zustand (Gerenciamento de estado)
-- ShadCn Ui (componentes de interface)
+- ShadCN Ui (componentes de interface)
 - Tailwind (Estilização)
 - Swiper (Para slides ou carrosséis)
 

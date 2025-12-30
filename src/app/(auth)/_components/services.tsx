@@ -1,3 +1,4 @@
+import { DividerSVG } from "@/components/svg/divider";
 import { Card } from "@/components/ui/card";
 import { servicesData } from "@/data/services-data";
 import Image from "next/image";
@@ -9,9 +10,7 @@ export const Services = () => {
       className="sectionStyle relative overflow-hidden"
     >
       <div className="absolute inset-0 z-[-1] bg-[radial-gradient(circle_at_25%_20%,rgba(255,183,0,0.14),transparent_45%),radial-gradient(circle_at_75%_80%,rgba(255,115,0,0.1),transparent_50%)]"></div>
-      <div className="absolute top-0 w-full">
-        <img src="/black_divider_top.png" alt="black_divider_top" className="w-full" />
-      </div>
+      <DividerSVG top />
       <div className="container mx-auto px-4 py-20">
         <h1 data-aos="fade-down" className="sectionTitleStyle mb-3">
           Nossos <span className="sectionTitleSpanStyle">Serviços</span>
@@ -21,8 +20,8 @@ export const Services = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 justify-items-center">
           {servicesData.map((service) => (
-            <div data-aos="zoom-in">
-              <Card key={service.id}
+            <div key={service.id} data-aos="zoom-in">
+              <Card
                 className="relative group w-72 h-80 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/70 backdrop-blur transition-all! duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-yellow-500/20"
               >
                 <div className="absolute inset-0 z-1 bg-linear-to-t from-black/90 via-black/50 to-transparent"></div>
@@ -47,9 +46,7 @@ export const Services = () => {
           ))}
         </div>
       </div>
-      <div className="absolute bottom-0 w-full rotate-180">
-        <img src="/black_divider_top.png" alt="black_divider_top" className="w-full" />
-      </div>
+      <DividerSVG rotate />
     </section>
   )
 }

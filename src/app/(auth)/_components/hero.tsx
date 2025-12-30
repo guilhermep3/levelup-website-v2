@@ -3,6 +3,7 @@ import { BsFillLightningChargeFill } from "react-icons/bs";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import { FaDumbbell } from "react-icons/fa";
 import Link from "next/link";
+import { DividerSVG } from "@/components/svg/divider";
 
 export const Hero = () => {
 
@@ -10,9 +11,7 @@ export const Hero = () => {
     <section id="hero" className="sectionStyle relative min-h-screen py-16 sm:py-24 overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_20%,rgba(255,183,0,0.15),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(255,115,0,0.12),transparent_55%)]"></div>
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-size-[60px_60px]"></div>
-      <div className="absolute bottom-0 rotate-180 w-full">
-        <img src="/black_divider_top.png" alt="black_divider_top" className="w-full" />
-      </div>
+      <DividerSVG rotate />
       <div className="containerStyle flex flex-col-reverse sm:flex-row items-center justify-between gap-14">
         <div className="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left gap-6">
           <h1 data-aos="zoom-in"
